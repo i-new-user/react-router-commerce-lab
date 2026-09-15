@@ -85,7 +85,7 @@ export const ProductPage = () => {
       <Page>
         <Title>Товар не найден</Title>
 
-        <BackLink to="/catalog">
+        <BackLink to='..'>
           Вернуться в каталог
         </BackLink>
       </Page>
@@ -100,7 +100,7 @@ export const ProductPage = () => {
 
   return (
     <Page>
-      <BackLink to="/catalog">
+      <BackLink to="..">
         ← Вернуться в каталог
       </BackLink>
 
