@@ -1,6 +1,5 @@
 import './App.css'
 import { Routes, Route } from 'react-router'
-import { Header } from './components/Header'
 import { HomePage } from './pages/HomePage'
 import { CatalogPage } from './pages/CatalogPage'
 import { DeliveryPage } from './pages/DeliveryPage'
@@ -10,26 +9,31 @@ import { CartPage } from './pages/CartPage'
 
 import { ProductPage } from './pages/ProductPage'
 
+import { ShopLayout } from './layouts/ShopLayout'
+
 import { NotFoundPage } from './pages/NotFoundPage'
 
 
 function App() {
- 
+
   return (
-    <>
-     <Header/>
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/catalog' element={<CatalogPage />} />
-        <Route path='/catalog/:productId' element={<ProductPage />} />
-        
-        <Route path='/delivery' element={<DeliveryPage />} />
-        <Route path='/about' element={<AboutPage />} />
-        <Route path='/contacts' element={<ContactsPage />} />
-        <Route path='/cart' element={<CartPage />} />  
-        <Route path='*' element={<NotFoundPage />} />
+        <Route element={<ShopLayout/>}>
+          <Route index element={<HomePage/>} />
+
+          <Route path='catalog'>
+            <Route index element={<CatalogPage/>} />
+            <Route path=':productId' element={<ProductPage/>} />
+          </Route>
+
+          <Route path='delivery' element={<DeliveryPage/>} />
+          <Route path='about' element={<AboutPage />}/>
+          <Route path='contacts' element={<ContactsPage/>} />
+          <Route path='cart' element={<CartPage/>} />
+
+          <Route path='*' element={<NotFoundPage/>} />
+        </Route>
       </Routes>
-    </>
   )
 }
 

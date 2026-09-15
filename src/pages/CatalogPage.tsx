@@ -21,7 +21,7 @@ export const CatalogPage = () => {
             <ProductName>{product.name}</ProductName>
             <Description>{product.description}</Description>
             <Price>{priceFormatter.format(product.price)}</Price>
-            <ProductLink to={`/catalog/${product.id}`}>Подробнее</ProductLink>
+            <ProductLink to={String(product.id)}>Подробнее</ProductLink>
           </ProductCard>
         ))}
       </ProductGrid>
