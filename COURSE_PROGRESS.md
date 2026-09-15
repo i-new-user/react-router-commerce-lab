@@ -31,7 +31,7 @@
 
 ### Урок 01 — базовая маршрутизация
 
-Ветка: `lesson/01-basic-routing`  
+Ветка: `lesson/01-basic-routing`
 Коммит: `da41ffd`
 
 Изучено и реализовано:
@@ -47,7 +47,7 @@
 
 ### Урок 02 — динамические маршруты товаров
 
-Ветка: `lesson/02-dynamic-product-routes`  
+Ветка: `lesson/02-dynamic-product-routes`
 Коммит: `3c81a99`
 
 Изучено и реализовано:
@@ -66,7 +66,7 @@
 
 ### Урок 03 — layout и вложенные маршруты
 
-Ветка: `lesson/03-layout-and-nested-routes`  
+Ветка: `lesson/03-layout-and-nested-routes`
 Коммит: `57790f7`
 
 Изучено и реализовано:
