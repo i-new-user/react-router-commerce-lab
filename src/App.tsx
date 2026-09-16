@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route } from 'react-router'
+import { Navigate, Routes, Route } from 'react-router'
 import { HomePage } from './pages/HomePage'
 import { CatalogPage } from './pages/CatalogPage'
 import { DeliveryPage } from './pages/DeliveryPage'
@@ -25,6 +25,8 @@ function App() {
             <Route index element={<CatalogPage/>} />
             <Route path=':productId' element={<ProductPage/>} />
           </Route>
+
+          <Route path="shop" element={ <Navigate to="/catalog" replace/>}/>
 
           <Route path='delivery' element={<DeliveryPage/>} />
           <Route path='about' element={<AboutPage />}/>

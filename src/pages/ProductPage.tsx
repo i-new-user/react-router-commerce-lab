@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { Link, useParams } from "react-router";
+import { Link, useLocation, useNavigate, useParams } from "react-router";
 import { products } from "../data/products";
+
+import type { CartNavigationState } from "../types/navigation";
 
 const Page = styled.main`
   width: min(100% - 32px, 960px);
@@ -65,9 +67,37 @@ const Price = styled.p`
   font-size: 24px;
   font-weight: 800;
 `
+const BuyButton = styled.button`
+  margin-top: 24px;
+  padding: 12px 20px;
+
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+
+  background-color: #4f46e5;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4338ca;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgb(79 70 229 / 35%);
+    outline-offset: 3px;
+  }
+`
+
+
+
 
 export const ProductPage = () => {
+
   const { productId } = useParams<{ productId: string }>()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const numericProductId = Number(productId)
 
@@ -92,6 +122,14 @@ export const ProductPage = () => {
     )
   }
 
+  const handleBuyNow = () => {
+    const state: CartNavigationState = {
+      productId: product.id,
+      from: `${location.pathname}${location.search}${location.hash}`
+    }
+    navigate('/cart', {state})
+  }
+
   const formattedPrice = new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
@@ -109,6 +147,9 @@ export const ProductPage = () => {
         <Title>{product.name}</Title>
         <Description>{product.description}</Description>
         <Price>{formattedPrice}</Price>
+        <BuyButton type="button" onClick={handleBuyNow}>
+          Купить сейчас
+        </BuyButton>
       </ProductCard>
     </Page>
   )
