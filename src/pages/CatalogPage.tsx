@@ -1,6 +1,25 @@
 import styled from "styled-components"
-import { Link } from "react-router"
+import { Link, useSearchParams } from "react-router"
 import { products } from "../data/products"
+import type { ProductCategory } from "../types/product"
+
+type CategoryFilter = ProductCategory | 'all'
+
+const categoryOptions: {
+    value: CategoryFilter,
+    label: string}[] = [
+
+    { value: 'all', label: 'Все товары' },
+    { value: 'electronics', label: 'Электроника' },
+    { value: 'accessories', label: 'Аксессуары' },
+    { value: 'home', label: 'Для дома' },
+]
+
+const isProductCategory = (value: string | null): value is ProductCategory => {
+    return(
+        value === 'electronics' || value === 'accessories' || value === 'home'
+    )
+}
 
 
 const priceFormatter = new Intl.NumberFormat('ru-RU', {
@@ -10,12 +29,41 @@ const priceFormatter = new Intl.NumberFormat('ru-RU', {
 })
 
 export const CatalogPage = () => {
+
+    const [searchParams, setSearchParams] = useSearchParams()
+    const categoryParam = searchParams.get('category')
+
+    const selectedCategory: CategoryFilter = isProductCategory(categoryParam) ? categoryParam : 'all'
+
+    const filteredProducts = selectedCategory === 'all' ? products : products.filter( (product) => product.categoryId === selectedCategory)
+
+    const handleCategoryChange = (category: CategoryFilter) => {
+        if(category === 'all'){
+            setSearchParams({})
+            return
+        }
+        setSearchParams({category})
+    }
+
   return (
     <Page>
-      <Title>Каталог</Title>
+        <Title>Каталог</Title>
+
+        <FilterList aria-label="Фильтр по категории">
+            {categoryOptions.map((option) => (
+                <FilterButton
+                    key={option.value}
+                    type="button"
+                    aria-pressed={selectedCategory === option.value}
+                    onClick={() => handleCategoryChange(option.value)}
+                    >
+                    {option.label}
+                </FilterButton>
+            ))}
+        </FilterList>
 
       <ProductGrid>
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id}>
             <Category>{product.category}</Category>
             <ProductName>{product.name}</ProductName>
@@ -102,6 +150,41 @@ const ProductLink = styled(Link)`
 
   &:hover {
     background-color: #4338ca;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgb(79 70 229 / 35%);
+    outline-offset: 3px;
+  }
+`
+
+const FilterList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+`
+
+const FilterButton = styled.button`
+  padding: 10px 16px;
+
+  color: #3730a3;
+  font: inherit;
+  font-weight: 700;
+
+  background-color: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e0e7ff;
+  }
+
+  &[aria-pressed='true'] {
+    color: #ffffff;
+    background-color: #4f46e5;
+    border-color: #4f46e5;
   }
 
   &:focus-visible {

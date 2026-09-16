@@ -7,6 +7,7 @@ export const products: Product[] = [
     description: "Компактные наушники с шумоподавлением и зарядным кейсом.",
     price: 4990,
     category: "Электроника",
+    categoryId: 'electronics'
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const products: Product[] = [
     description: "Водостойкий рюкзак с отделением для ноутбука.",
     price: 3490,
     category: "Аксессуары",
+    categoryId: 'accessories'
   },
   {
     id: 3,
@@ -21,5 +23,6 @@ export const products: Product[] = [
     description: "LED-лампа с регулировкой яркости и цвета через приложение.",
     price: 2190,
     category: "Для дома",
+    categoryId: 'home'
   },
 ]
