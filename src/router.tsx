@@ -1,5 +1,4 @@
-import { createBrowserRouter } from "react-router";
-import { Navigate } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 
 import { HomePage } from "./pages/HomePage";
 import { CatalogPage } from "./pages/CatalogPage";
@@ -11,6 +10,8 @@ import { CartPage } from "./pages/CartPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
 import { ShopLayout } from "./layouts/ShopLayout";
+
+import { productLoader } from "./loaders/productLoader";
 
 
 export const router = createBrowserRouter([
@@ -27,11 +28,12 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <CatalogPage/>
+                        element: <CatalogPage/>,
                     },
                     {
                         path: ':productId',
                         element: <ProductPage/>,
+                        loader: productLoader
                     },
                 ],
             },

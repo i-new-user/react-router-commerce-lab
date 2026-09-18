@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Link, useLocation, useNavigate, useParams } from "react-router";
-import { products } from "../data/products";
+import { Link, useLocation, useNavigate, useLoaderData } from "react-router";
+import { productLoader } from "../loaders/productLoader";
 
 import type { CartNavigationState } from "../types/navigation";
 
@@ -95,20 +95,9 @@ const BuyButton = styled.button`
 
 export const ProductPage = () => {
 
-  const { productId } = useParams<{ productId: string }>()
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  const numericProductId = Number(productId)
-
-  const isProductIdValid =
-    productId !== undefined &&
-    Number.isInteger(numericProductId) &&
-    numericProductId > 0
-
-  const product = isProductIdValid
-    ? products.find((item) => item.id === numericProductId)
-    : undefined
+  const product = useLoaderData<typeof productLoader>();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   if (!product) {
     return (
