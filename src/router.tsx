@@ -12,6 +12,7 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { ShopLayout } from "./layouts/ShopLayout";
 
 import { productLoader } from "./loaders/productLoader";
+import { ProductErrorPage } from "./pages/ProductErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -33,7 +34,8 @@ export const router = createBrowserRouter([
                     {
                         path: ':productId',
                         element: <ProductPage/>,
-                        loader: productLoader
+                        loader: productLoader,
+                        errorElement: <ProductErrorPage/>
                     },
                 ],
             },

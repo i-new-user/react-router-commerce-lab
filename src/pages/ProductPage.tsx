@@ -99,18 +99,6 @@ export const ProductPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  if (!product) {
-    return (
-      <Page>
-        <Title>Товар не найден</Title>
-
-        <BackLink to='..'>
-          Вернуться в каталог
-        </BackLink>
-      </Page>
-    )
-  }
-
   const handleBuyNow = () => {
     const state: CartNavigationState = {
       productId: product.id,
