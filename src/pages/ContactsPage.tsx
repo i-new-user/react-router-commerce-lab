@@ -1,18 +1,20 @@
-import { Form, useActionData } from 'react-router'
+import { useFetcher } from 'react-router'
 import { contactAction } from '../actions/contactAction'
 import styled from 'styled-components'
 
 
 export const ContactsPage = () => {
 
-  const actionData = useActionData<typeof contactAction>()
+  const fetcher = useFetcher<typeof contactAction>()
+  const actionData = fetcher.data
+  const isBusy = fetcher.state !== 'idle'
 
   return (
     <Page>
       <Title>Контакты</Title>
       <Phone>88002000505</Phone>
 
-      <ContactForm method='post'>
+      <fetcher.Form method='post'>
         <Field>
           <label htmlFor='name'>Имя</label>
           <Input id='name' name='name' type='text' required/>
@@ -26,8 +28,20 @@ export const ContactsPage = () => {
           <Textarea id='message' name='message' rows={5} required/>
         </Field>
 
-        <SubmitButton type='submit'>Отправить</SubmitButton>
-      </ContactForm>
+        <SubmitButton type="submit" disabled={isBusy}>
+          {fetcher.state === 'submitting'
+            ? 'Отправляем...'
+            : fetcher.state === 'loading'
+            ? 'Обновляем...'
+            : 'Отправить'}
+        </SubmitButton>
+
+
+      </fetcher.Form>
+
+      <Status aria-live="polite">
+        Состояние: {fetcher.state}
+      </Status>
 
       {actionData && 'error' in actionData && (
         <ErrorMessage role="alert">{actionData.error}</ErrorMessage>
@@ -36,7 +50,7 @@ export const ContactsPage = () => {
       {actionData && 'success' in actionData && (
         <SuccessMessage role="status">{actionData.message}</SuccessMessage>
       )}
-    </Page>
+    </Page >
   )
 }
 
@@ -67,16 +81,6 @@ const Phone = styled.p`
   color: #4b5563;
 `
 
-const ContactForm = styled(Form)`
-  display: grid;
-  gap: 20px;
-  padding: 32px;
-
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 12px 32px rgb(15 23 42 / 8%);
-`
 
 const Field = styled.div`
   display: grid;
@@ -141,6 +145,11 @@ const SubmitButton = styled.button`
     outline: 3px solid rgb(79 70 229 / 35%);
     outline-offset: 3px;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `
 
 const ErrorMessage = styled.p`
@@ -153,4 +162,10 @@ const SuccessMessage = styled.p`
   margin: 16px 0 0;
   color: #047857;
   font-weight: 700;
+`
+
+const Status = styled.p`
+  margin: 16px 0 0;
+  color: #6b7280;
+  font-size: 14px;
 `
