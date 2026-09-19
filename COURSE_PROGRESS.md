@@ -20,13 +20,14 @@
 
 ## Текущее состояние
 
-- Завершено уроков: 5 из 18.
-- Общий прогресс: примерно 28%.
-- Последний завершённый урок: 05.
-- Текущий урок: 06.
-- Текущая учебная ветка: `lesson/06-data-router-migration`.
-- Коммит реализации урока 05: `a9f68b3`.
-- Merge-коммит урока 05: `aa92d68`.
+- Завершено уроков: 10 из 18.
+- Общий прогресс: примерно 56%.
+- Последний завершённый урок: 10.
+- Текущий урок: 11.
+- Текущая учебная ветка: `lesson/11-protected-routes`.
+- Коммит реализации урока 10: `b0b5ca3`.
+- Merge-коммит урока 10: `d5f3b26`.
+
 ## Завершённые уроки
 
 ### Урок 01 — базовая маршрутизация
@@ -134,23 +135,115 @@
 - успешные ESLint и production build;
 - проверка знаний.
 
-## Текущий урок
-
 ### Урок 06 — переход на Data Router
 
 Ветка: `lesson/06-data-router-migration`
+
+Коммит реализации: `323c8c8`
+
+Merge-коммит: `42f85be`
+
+Изучено и реализовано:
+
+- Declarative Mode и Data Mode;
+- `createBrowserRouter` и `RouterProvider`;
+- объектная конфигурация маршрутов;
+- layout, `children`, index, динамические и wildcard-маршруты;
+- сохранение относительных ссылок и `Outlet`;
+- успешные ESLint и production build;
+- проверка знаний.
+
+### Урок 07 — loaders и данные маршрута
+
+Ветка: `lesson/07-loaders-and-route-data`
+
+Коммит реализации: `212e155`
+
+Merge-коммит: `e1d626b`
+
+Изучено и реализовано:
+
+- `loader` и `LoaderFunctionArgs`;
+- получение route params в loader;
+- `productLoader`;
+- `useLoaderData` и вывод типа через `typeof productLoader`;
+- разделение получения данных и отображения;
+- успешные ESLint и production build;
+- проверка знаний.
+
+### Урок 08 — ошибки маршрутов
+
+Ветка: `lesson/08-route-errors`
+
+Коммит реализации: `c2abfe7`
+
+Merge-коммит: `61ec683`
+
+Изучено и реализовано:
+
+- `errorElement`, `useRouteError` и `isRouteErrorResponse`;
+- выбрасывание 404 через `data`;
+- обработка неправильного и отсутствующего `productId`;
+- всплытие ошибок до ближайшей границы;
+- различие wildcard 404 и data 404;
+- успешные ESLint и production build;
+- проверка знаний.
+
+### Урок 09 — actions и формы
+
+Ветка: `lesson/09-actions-and-forms`
+
+Коммит реализации: `2a37aed`
+
+Merge-коммит: `5045c32`
+
+Изучено и реализовано:
+
+- `action`, `ActionFunctionArgs` и `request.formData`;
+- React Router `Form` и `useActionData`;
+- сервероподобная валидация формы;
+- различие `name` и `id`;
+- вывод ошибок и успешного результата;
+- успешные ESLint и production build;
+- проверка знаний.
+
+### Урок 10 — pending UI и fetcher
+
+Ветка: `lesson/10-pending-ui`
+
+Коммит реализации: `b0b5ca3`
+
+Merge-коммит: `d5f3b26`
+
+Изучено и реализовано:
+
+- `useNavigation`;
+- состояния `idle`, `submitting` и `loading`;
+- блокировка кнопки и pending UI;
+- `useFetcher`, `fetcher.Form`, `fetcher.state` и `fetcher.data`;
+- отправка без изменения URL и истории;
+- различие глобальной навигации и локального fetcher;
+- успешные ESLint и production build;
+- проверка знаний.
+
+## Текущий урок
+
+### Урок 11 — авторизация и защищённые маршруты
+
+Ветка: `lesson/11-protected-routes`
 
 Статус: теория ещё не начата.
 
 План:
 
-- [ ] Разобрать два способа настройки React Router.
-- [ ] Изучить `createBrowserRouter`.
-- [ ] Изучить `RouterProvider`.
-- [ ] Перенести маршруты из JSX в объектную конфигурацию.
-- [ ] Перенести layout-маршрут и `children`.
-- [ ] Сохранить index, динамические и wildcard-маршруты.
-- [ ] Проверить относительные ссылки и `Outlet`.
+- [ ] Разобрать аутентификацию и авторизацию.
+- [ ] Создать имитацию пользовательской сессии.
+- [ ] Создать страницу входа и login action.
+- [ ] Создать защищённую страницу профиля.
+- [ ] Проверять авторизацию в loader.
+- [ ] Выполнять `redirect` на страницу входа.
+- [ ] Сохранять адрес назначения.
+- [ ] Реализовать выход.
 - [ ] Проверить прямой вход и обновление страницы.
 - [ ] Запустить ESLint и production build.
 - [ ] Пройти проверку знаний.
@@ -158,18 +251,6 @@
 - [ ] Объединить урок с `main`.
 
 ## Оставшийся план
-
-### Основы
-
-- Урок 05 — `useNavigate`, `Navigate`, `useLocation`, navigation state.
-
-### Data Router
-
-- Урок 06 — `createBrowserRouter` и `RouterProvider`.
-- Урок 07 — `loader` и `useLoaderData`.
-- Урок 08 — `errorElement` и `useRouteError`.
-- Урок 09 — `action`, `Form`, `useActionData`.
-- Урок 10 — `useNavigation`, `useFetcher`, pending UI.
 
 ### Продвинутая архитектура
 
