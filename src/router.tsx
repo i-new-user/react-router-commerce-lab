@@ -14,6 +14,8 @@ import { ShopLayout } from "./layouts/ShopLayout";
 import { productLoader } from "./loaders/productLoader";
 import { ProductErrorPage } from "./pages/ProductErrorPage";
 
+import { contactAction } from "./actions/contactAction";
+
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +56,7 @@ export const router = createBrowserRouter([
             {
                 path: 'contacts',
                 element: <ContactsPage/>,
+                action: contactAction
             },
             {
                 path: 'cart',
